@@ -1,9 +1,11 @@
-package com.roshsoft.starwars;
+package com.roshsoft.starwars.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.roshsoft.starwars.R;
+import com.roshsoft.starwars.ui.base.BaseActivity;
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
