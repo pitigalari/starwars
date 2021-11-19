@@ -10,5 +10,16 @@
         android:id="@+id/planetsFragment"
         android:name="com.roshsoft.starwars.ui.fragment.PlanetsFragment"
         android:label="fragment_planets"
-        tools:layout="@layout/fragment_planets" />
+        app:startDestination="@id/action_planetsFragment_to_planetDetailFragment"
+        tools:layout="@layout/fragment_planets">
+        <action
+            android:id="@+id/action_planetsFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment"
+            app:popUpTo="@id/planetsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetDetailFragment"
+        android:name="com.roshsoft.starwars.ui.fragment.PlanetDetailFragment"
+        android:label="PlanetDetailFragment"
+        tools:layout="@layout/fragment_planet_detail" />
 </navigation>

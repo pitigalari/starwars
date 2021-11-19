@@ -4,10 +4,14 @@ import com.roshsoft.starwars.data.Constants;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RestService {
 
     @GET(Constants.ENDPOINT_ALL_PLANETS)
-    Single<PlanetsApiResponse> getAllPlanets(@Query("page") String page);
+    Single<Planets> getAllPlanets(@Query("page") String page);
+
+    @GET(Constants.ENDPOINT_PLANET)
+    Single<PlanetDetail> getPlanet(@Path("id") int id);
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
-import com.roshsoft.starwars.data.http.Planet;
+import com.roshsoft.starwars.data.http.PlanetDetail;
 import com.roshsoft.starwars.data.repository.IPlanetRepository;
 import com.roshsoft.starwars.data.repository.PlanetsDataSourceFactory;
 
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 public class PlanetsViewModel extends ViewModel {
 
     private final IPlanetRepository mPlanetRepository;
-    private LiveData<PagedList<Planet>> mPlanetsLiveData;
+    private LiveData<PagedList<PlanetDetail>> mPlanetsLiveData;
     private PlanetsDataSourceFactory sourceFactory;
 
     @Inject
@@ -32,7 +32,7 @@ public class PlanetsViewModel extends ViewModel {
                 .build();
     }
 
-    public LiveData<PagedList<Planet>> getPlanetsPagedListLiveData() {
+    public LiveData<PagedList<PlanetDetail>> getPlanetsPagedListLiveData() {
         return mPlanetsLiveData;
     }
 

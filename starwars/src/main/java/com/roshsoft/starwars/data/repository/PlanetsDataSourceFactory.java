@@ -3,13 +3,13 @@ package com.roshsoft.starwars.data.repository;
 import androidx.annotation.NonNull;
 import androidx.paging.DataSource;
 
-import com.roshsoft.starwars.data.http.Planet;
+import com.roshsoft.starwars.data.http.PlanetDetail;
 
 import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
-public class PlanetsDataSourceFactory extends DataSource.Factory<Integer, Planet> {
+public class PlanetsDataSourceFactory extends DataSource.Factory<Integer, PlanetDetail> {
 
     private final IPlanetRepository mPlanetRepository;
 
@@ -23,7 +23,7 @@ public class PlanetsDataSourceFactory extends DataSource.Factory<Integer, Planet
     @NonNull
     @NotNull
     @Override
-    public DataSource<Integer, Planet> create() {
+    public DataSource<Integer, PlanetDetail> create() {
         dataSource = new PlanetsPagingDataSource(mPlanetRepository);
         return dataSource;
     }

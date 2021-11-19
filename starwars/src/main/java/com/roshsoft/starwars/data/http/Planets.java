@@ -9,11 +9,11 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class PlanetsApiResponse {
+public class Planets {
 
     @SerializedName("results")
     @Expose
-    private List<Planet> planetList;
+    private List<PlanetDetail> planetList;
     @SerializedName("next")
     @Expose
     private String nextUrl;
@@ -21,7 +21,7 @@ public class PlanetsApiResponse {
     @Expose
     private String preUrl;
 
-    public List<Planet> getPlanetList() {
+    public List<PlanetDetail> getPlanetList() {
         return planetList;
     }
 

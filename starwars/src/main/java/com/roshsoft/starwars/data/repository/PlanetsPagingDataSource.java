@@ -3,8 +3,8 @@ package com.roshsoft.starwars.data.repository;
 import androidx.annotation.NonNull;
 import androidx.paging.PageKeyedDataSource;
 
-import com.roshsoft.starwars.data.http.Planet;
-import com.roshsoft.starwars.data.http.PlanetsApiResponse;
+import com.roshsoft.starwars.data.http.PlanetDetail;
+import com.roshsoft.starwars.data.http.Planets;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +15,7 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
-public class PlanetsPagingDataSource extends PageKeyedDataSource<Integer, Planet> {
+public class PlanetsPagingDataSource extends PageKeyedDataSource<Integer, PlanetDetail> {
 
     private final IPlanetRepository mPlanetRepo;
     private final CompositeDisposable mCompositeDisposable;
@@ -26,17 +26,17 @@ public class PlanetsPagingDataSource extends PageKeyedDataSource<Integer, Planet
     }
 
     @Override
-    public void loadInitial(@NonNull @NotNull LoadInitialParams<Integer> params, @NonNull @NotNull LoadInitialCallback<Integer, Planet> callback) {
+    public void loadInitial(@NonNull @NotNull LoadInitialParams<Integer> params, @NonNull @NotNull LoadInitialCallback<Integer, PlanetDetail> callback) {
         mCompositeDisposable.add(mPlanetRepo.getPlanets(1)
                 .subscribeOn(Schedulers.io())
-                .subscribeWith(new DisposableSingleObserver<PlanetsApiResponse>() {
+                .subscribeWith(new DisposableSingleObserver<Planets>() {
                     @Override
-                    public void onSuccess(@NotNull PlanetsApiResponse planetsApiResponse) {
-                        List<Planet> planetList = planetsApiResponse.getPlanetList();
+                    public void onSuccess(@NotNull Planets planets) {
+                        List<PlanetDetail> planetList = planets.getPlanetList();
                         if (planetList != null && !planetList.isEmpty()) {
                             callback.onResult(planetList,
-                                    planetsApiResponse.getPreviousPage(),
-                                    planetsApiResponse.getNextPage());
+                                    planets.getPreviousPage(),
+                                    planets.getNextPage());
                         }
                     }
 
@@ -48,19 +48,19 @@ public class PlanetsPagingDataSource extends PageKeyedDataSource<Integer, Planet
     }
 
     @Override
-    public void loadBefore(@NonNull @NotNull LoadParams<Integer> params, @NonNull @NotNull LoadCallback<Integer, Planet> callback) {
+    public void loadBefore(@NonNull @NotNull LoadParams<Integer> params, @NonNull @NotNull LoadCallback<Integer, PlanetDetail> callback) {
     }
 
     @Override
-    public void loadAfter(@NonNull @NotNull LoadParams<Integer> params, @NonNull @NotNull LoadCallback<Integer, Planet> callback) {
+    public void loadAfter(@NonNull @NotNull LoadParams<Integer> params, @NonNull @NotNull LoadCallback<Integer, PlanetDetail> callback) {
         mCompositeDisposable.add(mPlanetRepo.getPlanets(params.key)
                 .subscribeOn(Schedulers.io())
-                .subscribeWith(new DisposableSingleObserver<PlanetsApiResponse>() {
+                .subscribeWith(new DisposableSingleObserver<Planets>() {
                     @Override
-                    public void onSuccess(@NotNull PlanetsApiResponse planetsApiResponse) {
-                        List<Planet> planetList = planetsApiResponse.getPlanetList();
+                    public void onSuccess(@NotNull Planets planets) {
+                        List<PlanetDetail> planetList = planets.getPlanetList();
                         if (planetList != null && !planetList.isEmpty()) {
-                            callback.onResult(planetList, planetsApiResponse.getNextPage());
+                            callback.onResult(planetList, planets.getNextPage());
                         }
                     }
 

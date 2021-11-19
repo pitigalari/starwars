@@ -1,6 +1,7 @@
 package com.roshsoft.starwars.data.repository;
 
-import com.roshsoft.starwars.data.http.PlanetsApiResponse;
+import com.roshsoft.starwars.data.http.PlanetDetail;
+import com.roshsoft.starwars.data.http.Planets;
 import com.roshsoft.starwars.data.http.RestService;
 
 import javax.inject.Inject;
@@ -17,7 +18,12 @@ public class PlanetRepository implements IPlanetRepository {
     }
 
     @Override
-    public Single<PlanetsApiResponse> getPlanets(int page) {
+    public Single<Planets> getPlanets(int page) {
         return mRestService.getAllPlanets((page + ""));
+    }
+
+    @Override
+    public Single<PlanetDetail> getPlanetDetail(int id) {
+        return mRestService.getPlanet(id);
     }
 }

@@ -1,10 +1,13 @@
 package com.roshsoft.starwars.data.repository;
 
-import com.roshsoft.starwars.data.http.PlanetsApiResponse;
+import com.roshsoft.starwars.data.http.PlanetDetail;
+import com.roshsoft.starwars.data.http.Planets;
 
 import io.reactivex.Single;
 
 public interface IPlanetRepository {
 
-    Single<PlanetsApiResponse> getPlanets(int page);
+    Single<Planets> getPlanets(int page);
+
+    Single<PlanetDetail> getPlanetDetail(int id);
 }
