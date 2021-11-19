@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.roshsoft.starwars.data.viewmodel.PlanetDetailViewModel;
 import com.roshsoft.starwars.databinding.FragmentPlanetDetailBinding;
 
@@ -28,6 +30,7 @@ public class PlanetDetailFragment extends BaseFragment<FragmentPlanetDetailBindi
 
     private TextView mName, mOrbitalPeriod, mGravity;
     private ProgressBar mLoadingBar;
+    private ImageView image;
 
     @Nullable
     @Override
@@ -44,6 +47,8 @@ public class PlanetDetailFragment extends BaseFragment<FragmentPlanetDetailBindi
                     mOrbitalPeriod.setText(planetDetail.getOrbitalPeriod());
                     mGravity.setText(planetDetail.getGravity());
                     mLoadingBar.setVisibility(View.GONE);
+                    Glide.with(PlanetDetailFragment.this)
+                            .load((planetDetail.getImageUrl())).into(image);
                 });
 
         try {
@@ -58,6 +63,7 @@ public class PlanetDetailFragment extends BaseFragment<FragmentPlanetDetailBindi
         mName = binding.name;
         mGravity = binding.gravity;
         mOrbitalPeriod = binding.obitalPeriod;
+        image = binding.image;
         mLoadingBar = binding.loading;
     }
 

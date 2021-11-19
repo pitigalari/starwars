@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.roshsoft.starwars.data.http.PlanetDetail;
 import com.roshsoft.starwars.databinding.ItemPlanetBinding;
 import com.roshsoft.starwars.ui.util.OnItemClickListener;
@@ -36,5 +37,6 @@ public class PlanetsViewHolder extends RecyclerView.ViewHolder {
             if (mListener != null)
                 mListener.onItemClicked(planet);
         });
+        Glide.with(container).load((planet.getImageUrl())).into(image);
     }
 }

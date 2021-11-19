@@ -53,4 +53,8 @@ public class PlanetDetail {
         }
         return id;
     }
+
+    public String getImageUrl() {
+        return "https://picsum.photos/100?random=" + getID();
+    }
 }
