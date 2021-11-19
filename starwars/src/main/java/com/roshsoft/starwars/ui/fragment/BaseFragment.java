@@ -1,10 +1,12 @@
-package com.roshsoft.starwars.ui.base;
+package com.roshsoft.starwars.ui.fragment;
 
 import android.content.Context;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
+
+import com.roshsoft.starwars.ui.activity.BaseActivity;
 
 import dagger.android.support.DaggerFragment;
 

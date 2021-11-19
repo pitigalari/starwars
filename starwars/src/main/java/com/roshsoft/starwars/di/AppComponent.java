@@ -3,6 +3,7 @@ package com.roshsoft.starwars.di;
 import com.roshsoft.starwars.StarWarsApplication;
 import com.roshsoft.starwars.di.module.AppModule;
 import com.roshsoft.starwars.di.module.MainActivityModule;
+import com.roshsoft.starwars.di.module.PlanetRepositoryModule;
 
 import javax.inject.Singleton;
 
@@ -15,7 +16,8 @@ import dagger.android.AndroidInjector;
         ActivityBuilder.class,
         AndroidInjectionModule.class,
         AppModule.class,
-        MainActivityModule.class
+        MainActivityModule.class,
+        PlanetRepositoryModule.class
 })
 public interface AppComponent extends AndroidInjector<StarWarsApplication> {
 
